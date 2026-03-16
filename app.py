@@ -26,14 +26,20 @@ def get_ela(image, quality=90):
     return ela_image
 
 # --- Model Logic ---
-@st.cache_resource # Caches models so they don't reload on every click
-def load_models():
-    model_path = "./models/detector_1"
-
-    proc = AutoImageProcessor.from_pretrained(model_path)
-    mod = AutoModelForImageClassification.from_pretrained(model_path)
-
-    return [(proc, mod)]
+@st.cache_resource
+def load_detector_models():
+    # We use the full Hugging Face Repo IDs here
+    model_links = [
+        "umm-maybe/AI-image-detector",
+        "prithivMLmods/Deep-Fake-Detector-v2-Model"
+    ]
+    ensemble = []
+    for link in model_links:
+        # Streamlit will download these from HF the first time the app boots
+        p = AutoImageProcessor.from_pretrained(link)
+        m = AutoModelForImageClassification.from_pretrained(link)
+        ensemble.append((p, m))
+    return ensemble
 
 # --- Main App ---
 models = load_models()
