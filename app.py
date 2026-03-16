@@ -27,7 +27,7 @@ def get_ela(image, quality=90):
 
 # --- Model Logic ---
 @st.cache_resource
-def load_detector_models():
+def load_models():
     # We use the full Hugging Face Repo IDs here
     model_links = [
         "umm-maybe/AI-image-detector",
