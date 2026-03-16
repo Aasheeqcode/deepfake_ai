@@ -1,0 +1,14 @@
+# Web Interface
+streamlit
+
+# Core Machine Learning
+torch
+torchvision
+transformers
+
+# Image Processing
+Pillow
+
+# Compatibility Fix (Critical)
+# Pinning NumPy to version 1.x to avoid the "ARRAY_API not found" error with older TensorFlow/Torch backends
+numpy<2.0.0
